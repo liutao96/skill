@@ -1,0 +1,8 @@
+{
+    "host": "sry-2025sz-yh-w.rwlb.rds.aliyuncs.com",
+    "port": 3306,
+    "user": "yjecdc",
+    "password": "YJds88888888",
+    "database": "sry_2025sz_yh_bas",
+    "charset": "utf8mb4"
+}
