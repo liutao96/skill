@@ -1,0 +1,54 @@
+edition: 3.0.0
+name: polardb-query-api
+access: default
+
+description: PolarDB Query REST API - 通过函数计算查询 PolarDB 数据库
+
+vars:
+  region: cn-shenzhen
+  service:
+    name: polardb-query-service
+    description: PolarDB 查询 API 服务
+  # PolarDB 数据库连接配置
+  db:
+    host: sry-2025sz-yh-w.rwlb.rds.aliyuncs.com
+    port: "3306"
+    database: yj_data_warehouse
+    username: yjecdc
+    password: YJds88888888
+
+resources:
+  polardb-query-api:
+    component: fc3
+    props:
+      region: ${vars.region}
+      service: ${vars.service.name}
+      functionName: polardb-query-api
+      description: PolarDB 查询 REST API
+      runtime: nodejs18
+      handler: src/index.handler
+      timeout: 60
+      memorySize: 512
+      cpu: 0.5
+      diskSize: 512
+      code: ./
+      # 环境变量 - PolarDB 连接信息
+      environmentVariables:
+        POLARDB_HOST: ${vars.db.host}
+        POLARDB_PORT: ${vars.db.port}
+        POLARDB_DATABASE: ${vars.db.database}
+        POLARDB_USERNAME: ${vars.db.username}
+        POLARDB_PASSWORD: ${vars.db.password}
+      # 日志配置
+      logConfig: auto
+      # 触发器 - HTTP 触发器
+      triggers:
+        - triggerName: http-trigger
+          triggerType: http
+          qualifier: LATEST
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - OPTIONS
