@@ -1,6 +1,6 @@
 # Claude Skills 技能仓库
 
-这是我的 Claude Code 技能集合，包含 14 个技能，用于在多台电脑间同步使用。
+这是我的 Claude Code 技能集合，包含 70+ 个技能，用于在多台电脑间同步使用。
 
 ## 📦 已安装的技能
 
@@ -8,18 +8,42 @@
 - **xlsx** - Excel 电子表格处理工具
 - **docx** - Word 文档处理工具
 - **pdf** - PDF 文档处理工具
+- **markitdown** - 文件转 Markdown 工具
 
 ### 设计创作类
 - **canvas-design** - 视觉艺术作品创建工具
 - **frontend-design** - 前端界面设计工具
+
+### 浏览器自动化类
+- **browser-use** - 浏览器自动化工具
+- **chrome-cdp** - Chrome CDP 调试工具
 
 ### 文档协作类
 - **doc-coauthoring** - 文档协同撰写工具
 
 ### 数据库类
 - **PolarDB_Query** - PolarDB (MySQL) 数据库查询工具
+- **polardb-fc-query** - PolarDB 函数计算查询服务
 - **postgresql-helper** - PostgreSQL 文档助手
-- **aliyun-server-manager** - 阿里云服务器管理工具（自定义）
+- **aliyun-server-manager** - 阿里云服务器管理工具
+
+### 云服务类
+- **volc-ecs-manager** - 火山引擎 ECS 管理工具
+
+### 飞书生态类
+- **feishu-miaoda** - 飞书妙搭开发平台
+- **lark-base** - 飞书多维表格
+- **lark-calendar** - 飞书日历
+- **lark-doc** - 飞书云文档
+- **lark-drive** - 飞书云空间
+- **lark-im** - 飞书即时通讯
+- **lark-mail** - 飞书邮箱
+- **lark-minutes** - 飞书妙记
+- **lark-sheets** - 飞书电子表格
+- **lark-task** - 飞书任务
+- **lark-vc** - 飞书视频会议
+- **lark-wiki** - 飞书知识库
+- ... 共 18 个飞书相关技能
 
 ### 开发工具类
 - **mcp-builder** - MCP 服务器创建指南
@@ -29,6 +53,7 @@
 - **skill-creator** - 技能创建开发指南
 - **skill-manager** - 技能生命周期管理器
 - **skill-evolution-manager** - 技能优化迭代工具
+- **find-skills** - 技能发现工具
 
 ## 🚀 在新电脑上安装
 
@@ -97,4 +122,4 @@ git push
 
 ---
 
-最后更新: 2026-02-14
+最后更新: 2026-04-01
