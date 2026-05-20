@@ -162,6 +162,51 @@ When the user asks to write into Feishu:
 
 Do not change sharing permissions unless the user explicitly requests it.
 
+## Install and Cross-Device Setup
+
+Use this section when installing this skill on a new computer or when Feishu write-back does not work.
+
+What syncs through GitHub:
+
+- this skill's instructions and templates
+- trigger phrases and course/book note rules
+- Feishu write-back workflow rules
+- reusable note structure
+
+What does not sync automatically:
+
+- `lark-cli` installation
+- Feishu CLI profiles such as `personal-feishu-all`
+- App Secret, access tokens, cookies, or local login state
+- local screenshots, downloads, temporary files, or conversation memory
+- Feishu document permissions
+
+Recommended setup on another Windows computer:
+
+```powershell
+git clone https://github.com/liutao96/skill.git
+Copy-Item -Recurse -Force .\skill\course-notes "$env:USERPROFILE\.codex\skills\course-notes"
+```
+
+If the user also wants to use the same skill from Claude or another local agent:
+
+```powershell
+Copy-Item -Recurse -Force .\skill\course-notes "$env:USERPROFILE\.claude\skills\course-notes"
+```
+
+Feishu setup requirement:
+
+- Install and configure `lark-cli` separately on each computer.
+- Create or reuse a Feishu CLI profile named `personal-feishu-all`.
+- Authorize the user's personal Feishu account, not the company account.
+- If the profile name is different, either create a matching `personal-feishu-all` profile or update this skill before Feishu operations.
+
+Operational rule:
+
+- GitHub syncs the skill.
+- Feishu cloud stores the knowledge base.
+- Each computer needs its own local CLI installation and Feishu authorization.
+
 ## Response Style
 
 For advice-only requests, give the architecture and tradeoffs.
