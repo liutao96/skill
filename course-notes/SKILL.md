@@ -25,12 +25,12 @@ Default language: Chinese. Address the user as 刘涛.
 
 ## Multi-Course Architecture
 
-Use this generic structure for each course unless the user gives a different target:
+Use this generic structure for each course or book unless the user gives a different target:
 
 ```text
 个人知识库 / 课程学习库
 └─ {课程名称}｜学习总览
-   ├─ 00_课程总览与学习进度
+   ├─ 00_课程名称、原始目录与学习进度
    ├─ 01_{核心模块一}
    ├─ 02_{核心模块二}
    ├─ 03_{核心模块三}
@@ -41,22 +41,25 @@ Design principle:
 
 - Use a knowledge base or wiki as the container.
 - Use docs as the actual note pages.
+- Always preserve the original course/book name and original catalog/TOC in `00_课程名称、原始目录与学习进度` before or alongside module notes.
+- When the user sends a course catalog screenshot or book table of contents, transcribe it in the original order and mark uncertain OCR items as `待复核`.
 - Do not create one document per lesson at the beginning.
 - Use one module document for several related lessons.
 - Split a module only when it becomes too long to scan.
 
 ## Course Context Rules
 
-Before summarizing or writing notes, identify the active course:
+Before summarizing or writing notes, identify the active course or book:
 
 1. If the user names a course, use that course.
 2. If the user says "这门课", "继续记课", or sends content that clearly matches the last active course, continue that course.
 3. If multiple courses are possible, ask one short question: "这条内容归到哪门课？"
 4. If the user starts a new course, propose a minimal module map before creating Feishu docs.
 
-For each course, maintain:
+For each course or book, maintain:
 
 - course title
+- original catalog / table of contents in source order
 - course source or platform when known
 - module map
 - current lesson
