@@ -99,7 +99,30 @@ If the user provides audio or a transcript, summarize from transcript when avail
 
 ### Video
 
-Do not ask for full lesson video by default. Recommend screenshots, copied subtitles, short clips, or the user's own spoken summary. If a short video is provided and can be inspected, summarize only what is visible/audible.
+When the user provides a course video and asks for full preview notes, treat it as an assistant-authored lesson note, not as the user's rough notes.
+
+Default video-note workflow:
+
+1. Identify the course/book name, original catalog position, lesson title, and video duration when available.
+2. Preview the full available video or transcript before writing the final note. If the tool/runtime cannot inspect the full video, state the limitation and ask for a transcript, shorter segments, or screenshots.
+3. Generate complete, easy-to-understand, searchable notes under the corresponding course and lesson.
+4. Do not reproduce paid course content as a full transcript. Summarize, explain, structure, and preserve only short reusable prompts, parameters, steps, and tool names needed for personal study.
+5. If the lesson is long, split the note into timestamped sections or topic sections.
+6. Add search tags and keywords so the note can be found later.
+
+Video notes should include:
+
+- course name and original catalog position
+- lesson title
+- one-sentence conclusion
+- structured timeline or topic map
+- key concepts explained in plain Chinese
+- step-by-step workflow
+- reusable prompts, parameters, commands, links, or tool settings
+- examples/case breakdown
+- common mistakes and teacher emphasis
+- how 刘涛 can apply it
+- follow-up actions and questions
 
 ## Classification Rules
 
@@ -145,6 +168,45 @@ Use this compact shape while the user is learning:
 ```
 
 For detailed templates and examples, read `references/note-templates.md`.
+
+For assistant-authored notes from full course videos, use a richer searchable shape:
+
+```markdown
+## {{lesson_no}}. {{lesson_title}}
+
+课程：
+目录位置：
+来源：
+视频时长：
+笔记来源：AI完整预览课程视频后整理
+
+### 一句话结论
+
+### 本节课解决什么问题
+
+### 时间线 / 主题地图
+
+### 核心概念人话解释
+
+### 完整操作流程
+1.
+2.
+3.
+
+### 可复用提示词 / 参数 / 工具设置
+
+### 案例拆解
+
+### 常见错误 / 老师强调
+
+### 我的业务应用
+
+### 检索标签
+#课程名 #工具名 #主题词
+
+### 课后动作
+- [ ]
+```
 
 ## Feishu Write-Back Workflow
 
