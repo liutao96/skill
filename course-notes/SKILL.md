@@ -1,6 +1,6 @@
 ---
 name: course-notes
-description: 课程笔记整理与飞书沉淀工作流。Use when the user says trigger phrases such as "课程笔记", "记课", "帮我记一下", "整理到笔记", "这张图记一下", "总结到课程笔记", or sends course screenshots, text, audio transcripts, short video notes, course outlines, prompts, parameters, or questions that should be summarized, classified, and optionally written into Feishu docs/wiki. Also use when designing or maintaining a course knowledge-base structure, module notes, lesson note templates, or a temporary inbox for later cleanup.
+description: 课程笔记整理与飞书沉淀工作流。Use when the user says trigger phrases such as "course-notes", "course-notes-skill", "课程笔记", "记课", "帮我记一下", "整理到笔记", "这张图记一下", "总结到课程笔记", or sends course screenshots, text, audio transcripts, short video notes, course outlines, prompts, parameters, or questions that should be summarized, classified, and optionally written into Feishu docs/wiki. Also use when designing or maintaining a course knowledge-base structure, module notes, lesson note templates, or a temporary inbox for later cleanup.
 ---
 
 # Course Notes
@@ -16,25 +16,24 @@ Default language: Chinese. Address the user as 刘涛.
 - Start with goal calibration: identify whether the user wants advice, a draft summary, local notes, or Feishu write-back.
 - Do not create, overwrite, delete, move, or share Feishu documents unless the user clearly asks for that action.
 - For Feishu operations, use profile `personal-feishu-all` unless the user explicitly says otherwise.
+- Treat course identity as part of the note context. Do not assume every future note belongs to the AIGC course.
 - Keep raw input and structured notes conceptually separate. Raw input is what the user sent; structured notes are the cleaned learning output.
 - If classification is uncertain, put content into `99_知识点收集箱` instead of forcing it into a module.
 - Prefer a practical note over a beautiful note while the user is actively watching a lesson.
 - Preserve reusable prompts, parameters, commands, URLs, and tool names exactly when possible.
 - Avoid exposing secrets, cookies, private links, paid course material beyond the user's own note summary, or unnecessary verbatim long excerpts.
 
-## Default Feishu Architecture
+## Multi-Course Architecture
 
-Use this structure unless the user gives a different target:
+Use this generic structure for each course unless the user gives a different target:
 
 ```text
 个人知识库 / 课程学习库
-└─ AIGC 视频创作课程｜学习总览
+└─ {课程名称}｜学习总览
    ├─ 00_课程总览与学习进度
-   ├─ 01_MJ 出图与提示词
-   ├─ 02_AI 短视频工作流
-   ├─ 03_自媒体运营与变现
-   ├─ 04_AI 短剧制作
-   ├─ 05_AI 商业项目案例
+   ├─ 01_{核心模块一}
+   ├─ 02_{核心模块二}
+   ├─ 03_{核心模块三}
    └─ 99_知识点收集箱
 ```
 
@@ -45,6 +44,26 @@ Design principle:
 - Do not create one document per lesson at the beginning.
 - Use one module document for several related lessons.
 - Split a module only when it becomes too long to scan.
+
+## Course Context Rules
+
+Before summarizing or writing notes, identify the active course:
+
+1. If the user names a course, use that course.
+2. If the user says "这门课", "继续记课", or sends content that clearly matches the last active course, continue that course.
+3. If multiple courses are possible, ask one short question: "这条内容归到哪门课？"
+4. If the user starts a new course, propose a minimal module map before creating Feishu docs.
+
+For each course, maintain:
+
+- course title
+- course source or platform when known
+- module map
+- current lesson
+- Feishu target docs if already created
+- unresolved inbox items
+
+Do not mix notes from different courses in the same module document.
 
 ## Input Handling
 
@@ -81,7 +100,9 @@ Do not ask for full lesson video by default. Recommend screenshots, copied subti
 
 ## Classification Rules
 
-Map content to modules using these cues:
+First classify by active course, then by that course's module map. If no module map exists yet, infer a temporary one from the course outline and confirm before creating docs.
+
+For the current AIGC video course, use these module cues:
 
 - `MJ 出图与提示词`: Midjourney, 提示词, 参数, 反推, 图片权重, 宽高比, 混沌值, 角色一致性.
 - `AI 短视频工作流`: 爆款视频, 分镜, 山海经, 萌宠, 案例拆解, 后期剪辑, 视频生成流程.
@@ -89,6 +110,8 @@ Map content to modules using these cues:
 - `AI 短剧制作`: 剧本, 分镜, 角色一致性, 口型, 配音, 配乐, 合成, 短剧流程.
 - `AI 商业项目案例`: 商业写真, 广告, 宣传片, 地产片, 展会视频, Sora, AI 影视, 虚拟歌手.
 - `99_知识点收集箱`: unclear content, cross-module notes, follow-up questions, or content waiting for review.
+
+For other courses, create a course-specific module map with 3-7 modules. Use simple names that match the course outline, not generic AI labels.
 
 ## Note Output Template
 
