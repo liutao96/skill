@@ -1,0 +1,4 @@
+interface:
+  display_name: "课程笔记"
+  short_description: "整理课程截图、文字、音频，并沉淀为结构化飞书学习笔记"
+  default_prompt: "帮我把这段课程内容整理到课程笔记里"
