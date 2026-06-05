@@ -25,6 +25,18 @@ feishu-minutes-transcript
 
 Do not run broad skill installers such as "install all lark skills" for this workflow. `lark-cli` is an external CLI dependency, not a skill bundle dependency.
 
+If installing from the skill subdirectory URL, use:
+
+```powershell
+.\scripts\install-this-skill.ps1
+```
+
+or on macOS:
+
+```bash
+./scripts/install-this-skill.sh
+```
+
 The Skill does not include `lark-cli`, `ffmpeg`, Node.js, Homebrew, or PowerShell. These are local tools. If they are already installed, use them directly; if missing, install only the missing tool.
 
 ## Batch Mode

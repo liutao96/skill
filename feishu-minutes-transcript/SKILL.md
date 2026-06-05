@@ -213,6 +213,18 @@ Package this skill folder and give teammates these rules:
 
 The skill does not include Feishu credentials. That is intentional and required for security.
 
+If only this skill folder was downloaded, install it with:
+
+```powershell
+.\scripts\install-this-skill.ps1
+```
+
+On macOS:
+
+```bash
+./scripts/install-this-skill.sh
+```
+
 ## First-Use Setup
 
 The official lark-cli quick install command is:

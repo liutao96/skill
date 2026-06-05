@@ -8,6 +8,8 @@ Package only:
 - `scripts/feishu-minutes-picker.ps1`
 - `scripts/package-meeting-deliverable.ps1`
 - `scripts/batch-feishu-minutes.ps1`
+- `scripts/install-this-skill.ps1`
+- `scripts/install-this-skill.sh`
 - this reference file
 - `references/end-to-end-deliverable-workflow.md`
 - `references/limits-and-batch-mode.md`
@@ -100,6 +102,25 @@ macOS Codex local skill location:
 ```
 
 Claude Code skill support depends on the user's environment. If enabled, place this folder in the configured skills directory. If skill discovery is not available, keep the folder in the project and ask the agent to use the `SKILL.md` file directly.
+
+## Install this skill only
+
+If the user has only the `feishu-minutes-transcript` folder, run the installer inside this skill folder.
+
+Windows:
+
+```powershell
+.\scripts\install-this-skill.ps1
+```
+
+macOS:
+
+```bash
+chmod +x ./scripts/install-this-skill.sh
+./scripts/install-this-skill.sh
+```
+
+These installers copy only the `feishu-minutes-transcript` folder. They do not install any other skills from the repository.
 
 ## Test command
 
