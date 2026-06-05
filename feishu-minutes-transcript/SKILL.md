@@ -225,6 +225,22 @@ On macOS:
 ./scripts/install-this-skill.sh
 ```
 
+If installing directly from GitHub without cloning the repository:
+
+Windows PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.ps1 | iex
+```
+
+macOS:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.sh | bash
+```
+
+These commands install only `feishu-minutes-transcript`.
+
 ## First-Use Setup
 
 The official lark-cli quick install command is:

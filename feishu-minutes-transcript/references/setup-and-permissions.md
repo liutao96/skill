@@ -105,6 +105,22 @@ Claude Code skill support depends on the user's environment. If enabled, place t
 
 ## Install this skill only
 
+One-command install from GitHub:
+
+Windows PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.ps1 | iex
+```
+
+macOS:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.sh | bash
+```
+
+These commands install only `feishu-minutes-transcript`.
+
 If the user has only the `feishu-minutes-transcript` folder, run the installer inside this skill folder.
 
 Windows:
