@@ -34,7 +34,30 @@ The Skill itself is cross-platform. The external tools are not bundled inside th
 
 If a user already has `lark-cli` installed, do not ask them to install it again. Run `lark-cli auth status` and grant missing scopes only when needed.
 
-Windows recommended setup:
+Recommended teammate flow:
+
+1. Run the one-command installer in a normal terminal, not inside an AI agent permission request.
+2. Let the installer copy only this Skill, install missing tools, and run Feishu authorization.
+3. Complete Feishu login in the browser with the teammate's own account.
+4. Restart Codex or Claude Code only after the installer prints that installation, dependencies, and Feishu authorization are complete.
+
+Windows one-command install:
+
+```powershell
+irm https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.ps1 | iex
+```
+
+macOS one-command install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.sh | bash
+```
+
+These commands install only `feishu-minutes-transcript`; they do not install any other skills from the repository.
+
+Already installed users can update with the same command. The installer replaces only the local `feishu-minutes-transcript` Skill folder, prints the installed version, and keeps the user's existing `lark-cli` authorization profile.
+
+Manual Windows setup, only when the one-command installer cannot install a missing tool:
 
 ```powershell
 # Run only if lark-cli is not already installed:
@@ -47,7 +70,7 @@ lark-cli config init --new
 lark-cli auth login --scope "minutes:minutes.search:read minutes:minutes:readonly minutes:minutes.artifacts:read minutes:minutes.transcript:export minutes:minutes.media:export"
 ```
 
-macOS recommended setup:
+Manual macOS setup, only when the one-command installer cannot install a missing tool:
 
 ```bash
 brew install --cask powershell
@@ -105,7 +128,7 @@ Claude Code skill support depends on the user's environment. If enabled, place t
 
 ## Install this skill only
 
-One-command install from GitHub:
+One-command install from GitHub. These commands complete Skill install, missing dependency setup, and Feishu authorization before telling the user to restart Codex or Claude Code.
 
 Windows PowerShell:
 
@@ -120,6 +143,22 @@ curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-
 ```
 
 These commands install only `feishu-minutes-transcript`.
+
+Update an existing installation by rerunning the same one-command installer:
+
+Windows:
+
+```powershell
+irm https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.ps1 | iex
+```
+
+macOS:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.sh | bash
+```
+
+After update, restart Codex or Claude Code so it reloads the new Skill files.
 
 If the user has only the `feishu-minutes-transcript` folder, run the installer inside this skill folder.
 

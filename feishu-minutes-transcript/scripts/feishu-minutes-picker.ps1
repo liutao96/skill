@@ -30,6 +30,10 @@ function Show-SetupHelp {
 
   Write-Host ""
   Write-Host "Feishu Minutes Transcript setup check"
+  Write-Host "Complete install order for teammates:"
+  Write-Host "1. Run the GitHub one-command installer in a normal terminal."
+  Write-Host "2. Let it install missing dependencies and complete Feishu authorization."
+  Write-Host "3. Restart Codex or Claude Code only after the installer says setup is complete."
   Write-Host ""
   Write-Host "Detected tools:"
   Write-Host ("- npx:      " + $(if ($hasNpx) { "installed" } else { "missing" }))
@@ -66,6 +70,7 @@ function Show-SetupHelp {
   Write-Host "6. Verify lark-cli health and login:"
   Write-Host "   lark-cli doctor"
   Write-Host "   lark-cli auth status"
+  Write-Host "7. Restart Codex or Claude Code after install and authorization are complete."
   Write-Host ""
   Write-Host "This skill never packages another user's Feishu token, cookie, app secret, or downloaded meeting files."
 }
@@ -112,7 +117,7 @@ function Search-Minutes {
   $items = @()
   $pageToken = $null
   do {
-    $argsList = @("minutes", "+search", "--start", $Start, "--end", $End, "--page-size", "30", "--format", "json")
+    $argsList = @("minutes", "+search", "--start", $Start, "--end", $End, "--page-size", "200", "--format", "json")
     if (-not [string]::IsNullOrWhiteSpace($Query)) {
       $argsList += @("--query", $Query)
     }

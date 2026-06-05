@@ -1,5 +1,6 @@
 ---
 name: feishu-minutes-transcript
+version: 2026.06.05.1
 description: Use when the user wants to list Feishu/Lark Minutes, meeting recordings, meeting notes, or transcripts; choose which minutes to convert; download transcript text, AI artifacts, or audio files; batch process Feishu minutes through lark-cli; or package this workflow for teammates using Codex or Claude Code.
 ---
 
@@ -200,7 +201,29 @@ ffmpeg -y -i input.mp4 -vn -c:a copy output.m4a
 
 ## Sharing With Teammates
 
-Package this skill folder and give teammates these rules:
+Give teammates the one-command installer. It should be run in a normal terminal first, before restarting Codex or Claude Code.
+
+Windows PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.ps1 | iex
+```
+
+macOS:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.sh | bash
+```
+
+The installer flow is:
+
+```text
+install only this Skill -> install missing tools -> complete Feishu authorization -> restart Codex/Claude Code
+```
+
+If the Skill is already installed, rerun the same one-command installer to update it. The installer replaces only `feishu-minutes-transcript`, keeps the user's own Feishu authorization in `lark-cli`, and prints the installed version.
+
+Package this skill folder manually only when GitHub access is unavailable. Use these rules:
 
 1. Install only this skill folder, not unrelated skill bundles.
 2. Install `lark-cli` locally, or run `.\scripts\feishu-minutes-picker.ps1 -SetupHelp` to see commands.
@@ -209,7 +232,8 @@ Package this skill folder and give teammates these rules:
    - Codex: `%USERPROFILE%\.codex\skills\feishu-minutes-transcript`
    - Claude Code: the user's configured skills directory, if enabled in their environment
 5. Run Feishu authorization using their own account.
-6. Test with a short minute before processing long meetings.
+6. Restart Codex or Claude Code after Skill install, dependencies, and Feishu authorization are complete.
+7. Test with a short minute before processing long meetings.
 
 The skill does not include Feishu credentials. That is intentional and required for security.
 
@@ -225,21 +249,7 @@ On macOS:
 ./scripts/install-this-skill.sh
 ```
 
-If installing directly from GitHub without cloning the repository:
-
-Windows PowerShell:
-
-```powershell
-irm https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.ps1 | iex
-```
-
-macOS:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-minutes-transcript.sh | bash
-```
-
-These commands install only `feishu-minutes-transcript`.
+If installing directly from GitHub without cloning the repository, use the one-command installer above. These commands install only `feishu-minutes-transcript`; they do not install unrelated skills.
 
 ## First-Use Setup
 
