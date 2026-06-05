@@ -60,7 +60,7 @@ Already installed users can update with the same command. The installer replaces
 
 During normal use, the agent should run the bundled version checker first. If a newer GitHub version exists, it should ask the user whether to update now in natural language. The user should not need to copy install commands during the workflow.
 
-Users who installed a version before `2026.06.05.2` need one update before this automatic usage-time version prompt is available. After that, future updates can be prompted during normal use.
+Users who installed a version before `2026.06.05.3` need one update before this automatic usage-time version prompt is available. After that, future updates can be prompted during normal use.
 
 Manual Windows setup, only when the one-command installer cannot install a missing tool:
 

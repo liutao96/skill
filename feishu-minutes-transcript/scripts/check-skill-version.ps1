@@ -1,6 +1,6 @@
 param(
   [string]$SkillDir = (Split-Path -Parent $PSScriptRoot),
-  [string]$RemoteSkillUrl = "https://raw.githubusercontent.com/liutao96/skill/main/feishu-minutes-transcript/SKILL.md",
+  [string]$RemoteSkillUrl = "https://api.github.com/repos/liutao96/skill/contents/feishu-minutes-transcript/SKILL.md?ref=main",
   [switch]$Json
 )
 
@@ -48,7 +48,19 @@ try {
     $localVersion = Get-VersionFromText -Text (Get-Content -LiteralPath $localSkillFile -Raw)
   }
 
-  $remoteText = (Invoke-WebRequest -Uri $RemoteSkillUrl -UseBasicParsing).Content
+  $separator = if ($RemoteSkillUrl.Contains("?")) { "&" } else { "?" }
+  $cacheBustedUrl = $RemoteSkillUrl + $separator + "_=" + ([DateTimeOffset]::UtcNow.ToUnixTimeSeconds())
+  $remoteBody = (Invoke-WebRequest -Uri $cacheBustedUrl -UseBasicParsing).Content
+  try {
+    $remoteJson = $remoteBody | ConvertFrom-Json
+    if ($remoteJson.content) {
+      $remoteText = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String(($remoteJson.content -replace "\s", "")))
+    } else {
+      $remoteText = $remoteBody
+    }
+  } catch {
+    $remoteText = $remoteBody
+  }
   $latestVersion = Get-VersionFromText -Text $remoteText
   $updateAvailable = (Compare-VersionText -Left $localVersion -Right $latestVersion) -lt 0
 

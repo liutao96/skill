@@ -1,6 +1,6 @@
 ---
 name: feishu-minutes-transcript
-version: 2026.06.05.2
+version: 2026.06.05.3
 description: Use when the user wants to list Feishu/Lark Minutes, meeting recordings, meeting notes, or transcripts; choose which minutes to convert; download transcript text, AI artifacts, or audio files; batch process Feishu minutes through lark-cli; or package this workflow for teammates using Codex or Claude Code.
 ---
 
@@ -49,7 +49,7 @@ If it reports `update_available: true`, tell the user in natural language that a
 
 If version check fails because the network is unavailable, continue the user's current task and mention that update checking could not be completed.
 
-This usage-time update prompt exists only in version `2026.06.05.2` and later. Older installed copies need one update first.
+This usage-time update prompt exists only in version `2026.06.05.3` and later. Older installed copies need one update first.
 
 ## Quick Start
 
