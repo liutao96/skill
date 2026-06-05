@@ -6,6 +6,7 @@ Package only:
 
 - `SKILL.md`
 - `scripts/feishu-minutes-picker.ps1`
+- `scripts/check-skill-version.ps1`
 - `scripts/package-meeting-deliverable.ps1`
 - `scripts/batch-feishu-minutes.ps1`
 - `scripts/install-this-skill.ps1`
@@ -56,6 +57,10 @@ curl -fsSL https://raw.githubusercontent.com/liutao96/skill/main/install-feishu-
 These commands install only `feishu-minutes-transcript`; they do not install any other skills from the repository.
 
 Already installed users can update with the same command. The installer replaces only the local `feishu-minutes-transcript` Skill folder, prints the installed version, and keeps the user's existing `lark-cli` authorization profile.
+
+During normal use, the agent should run the bundled version checker first. If a newer GitHub version exists, it should ask the user whether to update now in natural language. The user should not need to copy install commands during the workflow.
+
+Users who installed a version before `2026.06.05.2` need one update before this automatic usage-time version prompt is available. After that, future updates can be prompted during normal use.
 
 Manual Windows setup, only when the one-command installer cannot install a missing tool:
 

@@ -12,6 +12,7 @@ param(
   [string]$ListCsv,
   [bool]$FriendlyNames = $true,
   [switch]$SetupHelp,
+  [switch]$SkipVersionCheck,
   [switch]$ListOnly,
   [switch]$DownloadAudio,
   [switch]$ExtractAudio,
@@ -75,6 +76,35 @@ function Show-SetupHelp {
   Write-Host "This skill never packages another user's Feishu token, cookie, app secret, or downloaded meeting files."
 }
 
+function Show-VersionNotice {
+  if ($SkipVersionCheck) {
+    return
+  }
+
+  $checkScript = Join-Path $PSScriptRoot "check-skill-version.ps1"
+  if (-not (Test-Path $checkScript)) {
+    return
+  }
+
+  try {
+    $resultText = & $checkScript -Json 2>$null
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace(($resultText | Out-String))) {
+      return
+    }
+    $result = ($resultText | Out-String) | ConvertFrom-Json
+    if ($result.update_available) {
+      Write-Host ""
+      Write-Host "检测到 feishu-minutes-transcript 有新版本。"
+      Write-Host ("当前版本: " + $result.local_version)
+      Write-Host ("最新版本: " + $result.latest_version)
+      Write-Host "你可以直接回复“现在更新”，让 Agent 帮你更新；更新完成后重启 Codex 或 Claude Code。"
+      Write-Host ""
+    }
+  } catch {
+    return
+  }
+}
+
 function Test-LarkCliReady {
   $cmd = Get-Command lark-cli -ErrorAction SilentlyContinue
   if (-not $cmd) {
@@ -95,6 +125,7 @@ if ($SetupHelp) {
   exit 0
 }
 
+Show-VersionNotice
 Test-LarkCliReady
 
 function Invoke-LarkJson {

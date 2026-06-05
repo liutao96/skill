@@ -1,6 +1,6 @@
 ---
 name: feishu-minutes-transcript
-version: 2026.06.05.1
+version: 2026.06.05.2
 description: Use when the user wants to list Feishu/Lark Minutes, meeting recordings, meeting notes, or transcripts; choose which minutes to convert; download transcript text, AI artifacts, or audio files; batch process Feishu minutes through lark-cli; or package this workflow for teammates using Codex or Claude Code.
 ---
 
@@ -36,6 +36,20 @@ For setup and permission details, read `references/setup-and-permissions.md` onl
 For one final handoff package containing transcript, MP3, and meeting notes, read `references/end-to-end-deliverable-workflow.md`.
 
 For unsupported cases, install scope, batch mode, and macOS notes, read `references/limits-and-batch-mode.md`.
+
+## Version Check
+
+At the start of any real workflow, before listing or downloading minutes, run the bundled version check script from this skill folder:
+
+```powershell
+.\scripts\check-skill-version.ps1 -Json
+```
+
+If it reports `update_available: true`, tell the user in natural language that a newer version is available and ask whether to update now. Do not ask the user to copy commands. If the user agrees, run the GitHub installer for them, then tell them to restart Codex or Claude Code after the update finishes.
+
+If version check fails because the network is unavailable, continue the user's current task and mention that update checking could not be completed.
+
+This usage-time update prompt exists only in version `2026.06.05.2` and later. Older installed copies need one update first.
 
 ## Quick Start
 
@@ -172,13 +186,13 @@ This creates one output folder per meeting. Generate final meeting notes and fin
 Search owned minutes:
 
 ```powershell
-lark-cli minutes +search --owner-ids me --start 2026-06-01 --end 2026-06-04 --page-size 30 --format json
+lark-cli minutes +search --owner-ids me --start 2026-06-01 --end 2026-06-04 --page-size 200 --format json
 ```
 
 Search participated minutes:
 
 ```powershell
-lark-cli minutes +search --participant-ids me --start 2026-06-01 --end 2026-06-04 --page-size 30 --format json
+lark-cli minutes +search --participant-ids me --start 2026-06-01 --end 2026-06-04 --page-size 200 --format json
 ```
 
 Export transcript and artifacts by minute token:
