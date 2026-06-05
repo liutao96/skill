@@ -18,6 +18,8 @@ Do not scrape Feishu web pages. Use `lark-cli` and the current user's Feishu aut
 ## Requirements
 
 - `lark-cli` is required for Feishu API access. The script treats it as a soft dependency: if it is missing, it prints first-use setup commands instead of failing silently.
+- If `lark-cli` is already installed, do not reinstall it. Use the existing CLI and only grant missing Feishu scopes when needed.
+- `ffmpeg` is needed only for MP3 extraction. If it is missing, explain that MP3 conversion requires installing ffmpeg on the current OS.
 - Each user must authorize their own Feishu account. Do not reuse another person's token or app secret.
 - Required transcript scopes:
   - `minutes:minutes:readonly`

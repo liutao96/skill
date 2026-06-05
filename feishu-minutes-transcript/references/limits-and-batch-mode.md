@@ -25,6 +25,8 @@ feishu-minutes-transcript
 
 Do not run broad skill installers such as "install all lark skills" for this workflow. `lark-cli` is an external CLI dependency, not a skill bundle dependency.
 
+The Skill does not include `lark-cli`, `ffmpeg`, Node.js, Homebrew, or PowerShell. These are local tools. If they are already installed, use them directly; if missing, install only the missing tool.
+
 ## Batch Mode
 
 Batch mode is supported for discovery and export, but final notes should stay one meeting per deliverable package.
@@ -65,6 +67,8 @@ brew install --cask powershell
 brew install ffmpeg
 npx @larksuite/cli@latest install
 ```
+
+Skip any command for a tool that is already installed.
 
 Then run scripts with `pwsh`, for example:
 

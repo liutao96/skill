@@ -23,20 +23,49 @@ param(
 $ErrorActionPreference = "Stop"
 
 function Show-SetupHelp {
+  $hasNpx = [bool](Get-Command npx -ErrorAction SilentlyContinue)
+  $hasLarkCli = [bool](Get-Command lark-cli -ErrorAction SilentlyContinue)
+  $hasFfmpeg = [bool](Get-Command ffmpeg -ErrorAction SilentlyContinue)
+  $hasPwsh = [bool](Get-Command pwsh -ErrorAction SilentlyContinue)
+
   Write-Host ""
-  Write-Host "Feishu Minutes Transcript first-use setup"
+  Write-Host "Feishu Minutes Transcript setup check"
   Write-Host ""
-  Write-Host "1. Install Node.js LTS if npm/npx is not available."
-  Write-Host "2. Install or update lark-cli:"
-  Write-Host "   npx @larksuite/cli@latest install"
-  Write-Host "3. Configure Feishu app credentials when first using lark-cli:"
+  Write-Host "Detected tools:"
+  Write-Host ("- npx:      " + $(if ($hasNpx) { "installed" } else { "missing" }))
+  Write-Host ("- lark-cli: " + $(if ($hasLarkCli) { "installed" } else { "missing" }))
+  Write-Host ("- ffmpeg:   " + $(if ($hasFfmpeg) { "installed" } else { "missing" }))
+  Write-Host ("- pwsh:     " + $(if ($hasPwsh) { "installed" } else { "missing or not needed on Windows PowerShell" }))
+  Write-Host ""
+
+  if (-not $hasNpx) {
+    Write-Host "1. Install Node.js LTS first, because npx is missing."
+  } else {
+    Write-Host "1. Node.js/npx is available."
+  }
+
+  if (-not $hasLarkCli) {
+    Write-Host "2. Install lark-cli:"
+    Write-Host "   npx @larksuite/cli@latest install"
+  } else {
+    Write-Host "2. lark-cli is already installed. You do not need to install it again."
+  }
+
+  if (-not $hasFfmpeg) {
+    Write-Host "3. Install ffmpeg if you need MP3 audio extraction."
+    Write-Host "   Windows: install ffmpeg and add it to PATH."
+    Write-Host "   macOS:   brew install ffmpeg"
+  } else {
+    Write-Host "3. ffmpeg is already installed. MP3 extraction is available."
+  }
+
+  Write-Host "4. Configure Feishu app credentials when first using lark-cli:"
   Write-Host "   lark-cli config init --new"
-  Write-Host "4. Authorize the required minutes scopes with your own Feishu account:"
+  Write-Host "5. Authorize or refresh the required minutes scopes with your own Feishu account:"
   Write-Host "   lark-cli auth login --scope `"minutes:minutes.search:read minutes:minutes:readonly minutes:minutes.artifacts:read minutes:minutes.transcript:export minutes:minutes.media:export`""
-  Write-Host "5. Verify lark-cli health and login:"
+  Write-Host "6. Verify lark-cli health and login:"
   Write-Host "   lark-cli doctor"
   Write-Host "   lark-cli auth status"
-  Write-Host "6. Optional: install ffmpeg and keep it in PATH if you need to extract MP3 audio from mp4 meeting recordings."
   Write-Host ""
   Write-Host "This skill never packages another user's Feishu token, cookie, app secret, or downloaded meeting files."
 }

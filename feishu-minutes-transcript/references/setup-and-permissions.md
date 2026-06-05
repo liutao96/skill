@@ -24,11 +24,24 @@ Do not package:
 
 Each teammate must use their own Feishu identity.
 
+The Skill itself is cross-platform. The external tools are not bundled inside the Skill:
+
+- `lark-cli` is required to access Feishu Minutes.
+- `ffmpeg` is required only when converting downloaded media to MP3.
+- PowerShell is required to run the bundled `.ps1` scripts; Windows usually has PowerShell, while macOS should install PowerShell 7.
+
+If a user already has `lark-cli` installed, do not ask them to install it again. Run `lark-cli auth status` and grant missing scopes only when needed.
+
 Windows recommended setup:
 
 ```powershell
+# Run only if lark-cli is not already installed:
 npx @larksuite/cli@latest install
+
+# First-time configuration or when switching Feishu app/profile:
 lark-cli config init --new
+
+# Grant or refresh required scopes:
 lark-cli auth login --scope "minutes:minutes.search:read minutes:minutes:readonly minutes:minutes.artifacts:read minutes:minutes.transcript:export minutes:minutes.media:export"
 ```
 
@@ -37,8 +50,14 @@ macOS recommended setup:
 ```bash
 brew install --cask powershell
 brew install ffmpeg
+
+# Run only if lark-cli is not already installed:
 npx @larksuite/cli@latest install
+
+# First-time configuration or when switching Feishu app/profile:
 lark-cli config init --new
+
+# Grant or refresh required scopes:
 lark-cli auth login --scope "minutes:minutes.search:read minutes:minutes:readonly minutes:minutes.artifacts:read minutes:minutes.transcript:export minutes:minutes.media:export"
 ```
 
@@ -51,6 +70,8 @@ The bundled script can print the first-use setup commands:
 ```powershell
 .\scripts\feishu-minutes-picker.ps1 -SetupHelp
 ```
+
+`-SetupHelp` checks whether `npx`, `lark-cli`, `ffmpeg`, and `pwsh` are already available. It should tell the user to install only the missing tools.
 
 If the CLI prints a verification URL, open it in the browser and complete authorization. In agent workflows, prefer:
 
