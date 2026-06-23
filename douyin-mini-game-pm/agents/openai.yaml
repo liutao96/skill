@@ -1,0 +1,4 @@
+interface:
+  display_name: "抖音小游戏项目经理"
+  short_description: "抖音小游戏全流程导师与项目经理"
+  default_prompt: "Use $douyin-mini-game-pm to推进抖音小游戏从立项、开发、提审到上线运营。"

@@ -49,6 +49,9 @@
 - **mcp-builder** - MCP 服务器创建指南
 - **github-to-skills** - GitHub 仓库转技能工具
 
+### 游戏项目管理类
+- **douyin-mini-game-pm** - 抖音小游戏开发导师与项目经理
+
 ### 技能管理类
 - **skill-creator** - 技能创建开发指南
 - **skill-manager** - 技能生命周期管理器

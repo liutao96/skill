@@ -1,0 +1,9 @@
+{
+  "name": "douyin-mini-game-pm",
+  "version": "0.1.1",
+  "repository": "liutao96/skill",
+  "versionFile": "douyin-mini-game-pm/VERSION",
+  "entrypoint": "SKILL.md",
+  "updatedAt": "2026-06-23",
+  "notes": "Configure GitHub release metadata and update check path for the shared skill repository."
+}
