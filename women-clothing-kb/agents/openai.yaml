@@ -1,0 +1,7 @@
+interface:
+  display_name: "女装带货知识库"
+  short_description: "调用移动硬盘女装提示词与视频案例库"
+  default_prompt: "Use $women-clothing-kb to generate a source-backed video motion prompt for a women's clothing product."
+
+policy:
+  allow_implicit_invocation: true
