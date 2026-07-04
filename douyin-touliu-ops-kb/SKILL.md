@@ -79,6 +79,10 @@ Douyin, DOU+, 巨量千川, 随心推, and Douyin e-commerce backend rules chang
 
 The GitHub copy contains only the lightweight skill. The real 6GB+ course videos, screenshots, transcripts, and summaries remain in the project folder or removable drive. If this skill is copied from GitHub to another computer, also make the project folder available locally and either keep the same relative project structure or set `DOUYIN_TOULIU_KB_ROOT`.
 
+When Liu Tao asks how to use this skill on another computer, read `references/cross-computer-setup.md` and prefer the project-level guide:
+
+`其他电脑使用说明_抖音投流运营知识库Skill.md`
+
 ## Output Style
 
 Answer Liu Tao in Chinese. Be direct and practical. For strategy questions, give a real judgment, not just a course summary. For execution questions, include a small checklist or next-step sequence.
