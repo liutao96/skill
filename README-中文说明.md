@@ -10,6 +10,7 @@
 | [doc-coauthoring](#doc-coauthoring) | 文档协作写作 | 写技术文档、PRD、决策文档 |
 | [docx](#docx) | Word文档处理 | 创建/编辑/分析 .docx 文件 |
 | [frontend-design](#frontend-design) | 前端界面设计 | 构建网站、组件、仪表盘 |
+| douyin-touliu-ops-kb | 抖音投流运营知识库 | 短视频带货运营、抖加、随心推、千川投流和复盘 |
 | [mcp-builder](#mcp-builder) | MCP服务器开发 | 创建MCP服务器集成外部API |
 | [pdf](#pdf) | PDF文档处理 | 创建/编辑/提取PDF内容 |
 | [skill-creator](#skill-creator) | 创建新Skill | 开发自定义skill扩展能力 |

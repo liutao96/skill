@@ -52,6 +52,10 @@
 ### 游戏项目管理类
 - **douyin-mini-game-pm** - 抖音小游戏开发导师与项目经理
 
+### 短视频带货运营类
+- **douyin-touliu-ops-kb** - 抖音短视频带货运营、投流复盘和课程知识库检索助手
+- **nvzhuang-daihuo-kb** - 女装带货提示词、素材和课程知识库检索助手
+
 ### 技能管理类
 - **skill-creator** - 技能创建开发指南
 - **skill-manager** - 技能生命周期管理器

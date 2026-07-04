@@ -1,0 +1,7 @@
+interface:
+  display_name: "抖音投流运营知识库"
+  short_description: "短视频带货运营、投流复盘和课程检索助手"
+  default_prompt: "Use $douyin-touliu-ops-kb to answer a Douyin short-video commerce operations or paid-traffic question from the local course knowledge base."
+
+policy:
+  allow_implicit_invocation: true
