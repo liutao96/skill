@@ -1,0 +1,7 @@
+interface:
+  display_name: "抖音视频发布后复盘"
+  short_description: "复盘抖音视频数据并沉淀下一条整改动作"
+  default_prompt: "Use $douyin-video-post-review to review this Douyin video after publishing, diagnose the data by posting time and analysis cutoff, and tell me what to change next."
+
+policy:
+  allow_implicit_invocation: true
